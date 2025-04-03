@@ -1,0 +1,21 @@
+[debug] [2025-03-24T13:28:51.801Z] ----------------------------------------------------------------------
+[debug] [2025-03-24T13:28:51.803Z] Command:       C:\nvm4w\nodejs\node.exe C:\nvm4w\nodejs\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2025-03-24T13:28:51.803Z] CLI Version:   13.35.1
+[debug] [2025-03-24T13:28:51.804Z] Platform:      win32
+[debug] [2025-03-24T13:28:51.804Z] Node Version:  v22.14.0
+[debug] [2025-03-24T13:28:51.804Z] Time:          Mon Mar 24 2025 18:58:51 GMT+0530 (India Standard Time)
+[debug] [2025-03-24T13:28:51.804Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-03-24T13:28:51.810Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-03-24T13:28:51.810Z] > authorizing via signed-in user (s.bodhisathwa@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\SURYA BODHI SATHWA\NexBo\NexBo\frontend
+

@@ -1,0 +1,9 @@
+This directory contains book cover images for the learning hub.
+The following images should be placed here:
+- investing-101.jpg
+- psychology-of-money.jpg
+- richest-man-in-babylon.jpg
+- intelligent-investor.jpg
+- bogleheads-guide.jpg
+
+For now, we're using placeholder graphics in the code.

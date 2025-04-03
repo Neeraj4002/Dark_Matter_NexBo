@@ -1,0 +1,39 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-start-rgb));
+  min-height: 100vh;
+}
+
+@keyframes gradient {
+  0%, 100% { 
+    background-size: 200% 200%;
+    background-position: left center;
+  }
+  50% { 
+    background-size: 200% 200%;
+    background-position: right center;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% auto;
+  animation: gradient 8s linear infinite;
+  will-change: background-position;
+}
+
+.steel-gradient {
+  background: linear-gradient(to right, #8f9499 0%, #d3dce6 50%, #8f9499 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
