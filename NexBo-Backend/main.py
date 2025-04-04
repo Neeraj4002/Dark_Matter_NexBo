@@ -183,4 +183,5 @@ async def chat_endpoint(request: Request):
         return JSONResponse(content={"response": assistant_response})
 
 if __name__ == "__main__":
-    uvicorn.run(app, host='127.0.0.1',port=5500)
+    port = int(os.environ.get("PORT", 5500))
+    uvicorn.run(app, host="0.0.0.0", port=port)
