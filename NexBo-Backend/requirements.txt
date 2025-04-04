@@ -189,3 +189,4 @@ yarg==0.1.9
 yarl==1.18.3
 yfinance==0.2.55
 zstandard==0.23.0
+pywin32==310; sys_platform == "win32"
