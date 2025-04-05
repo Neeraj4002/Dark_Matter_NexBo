@@ -265,7 +265,7 @@ export function NexBoChat() {
                 recommend: isRecommendationMode
             });
 
-            const response = await fetch('http://127.0.0.1:5500/chat', {
+            const response = await fetch('https://dark-matter-nexbo.onrender.com/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
