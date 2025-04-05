@@ -1,36 +1,39 @@
-import re
 import json
+import re
+from typing import Optional, Union
 
-def parse_ai_response(response_list):
+def extract_json_from_response(response: Union[str, list]) -> Optional[dict]:
     """
-    Extracts the JSON block from the AI response list and parses it.
-    
-    Parameters:
-        response_list (list): A list of strings returned by the AI.
+    Extracts and parses JSON from an AI response that may be a string or list of strings.
+    Handles cases where JSON is within markdown code blocks or plain text.
     
     Returns:
-        dict: A Python dictionary representing the parsed JSON object.
-    
-    Raises:
-        ValueError: If no valid JSON block is found or JSON parsing fails.
+        dict if JSON is successfully extracted and parsed, else None.
     """
-    json_block = None
+    # Step 1: Normalize input to a single string
+    if isinstance(response, list):
+        response = "\n".join(response)
+    elif not isinstance(response, str):
+        return None  # Invalid format
 
-    # Iterate over the list to find a string containing a JSON code block
-    for part in response_list:
-        # Look for a code block wrapped with ```json ... ```
-        match = re.search(r"```json\s*(\{.*?\})\s*```", part, re.DOTALL)
-        if match:
-            json_block = match.group(1)
-            break
+    # Step 2: Look for JSON code blocks first
+    json_block_match = re.search(r"```json\s*(\{.*?\})\s*```", response, re.DOTALL)
+    if json_block_match:
+        try:
+            return json.loads(json_block_match.group(1))
+        except json.JSONDecodeError:
+            pass  # Continue trying other methods
 
-    if not json_block:
-        raise ValueError("No JSON block found in the AI response.")
+    # Step 3: Try to extract any JSON-looking object from the text
+    json_like_match = re.search(r"(\{.*\})", response, re.DOTALL)
+    if json_like_match:
+        try:
+            return json.loads(json_like_match.group(1))
+        except json.JSONDecodeError:
+            pass
 
+    # Step 4: Try to directly parse the entire response
     try:
-        # Parse the JSON block
-        parsed_json = json.loads(json_block)
-    except json.JSONDecodeError as e:
-        raise ValueError("Failed to parse JSON: " + str(e))
-
-    return parsed_json
+        return json.loads(response)
+    except json.JSONDecodeError:
+        return None
