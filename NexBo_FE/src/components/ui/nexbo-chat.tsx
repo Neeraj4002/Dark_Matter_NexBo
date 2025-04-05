@@ -45,7 +45,7 @@ const suggestionQueries = [
 const initialMessages: Message[] = [
     {
         role: 'assistant',
-        content: "Welcome to NexBo! \n\nI'm your personal AI financial advisor, ready to assist you with:\n\n• Personalized stock recommendations\n• Investment strategies\n• Market analysis\n• Portfolio management\n\nTo get started, you can:\n1. Ask me any finance-related question\n2. Toggle 'Recommendations Mode' for stock picks\n3. Try the suggestion queries below"
+        content: "Welcome to NexBo!\nI'm your personal AI financial advisor, ready to assist you with:\n• Personalized stock recommendations\n• Investment strategies\n• Market analysis\n• Portfolio management\nTo get started, you can:\n1. Ask me any finance-related question\n2. Toggle 'Recommendations Mode' for stock picks\n3. Try the suggestion queries below"
     }
 ];
 
@@ -53,6 +53,7 @@ interface Message {
     role: 'user' | 'assistant';
     content: string;
     recommendations?: Stock[];
+    timestamp?: Date;
 }
 
 interface StockCardProps {
@@ -225,11 +226,9 @@ export function NexBoChat() {
             setMessages(prev => [...prev, {
                 role: 'assistant',
                 content: "To provide personalized stock recommendations, I need some information. Please provide:\n\n" +
-                    "1. Investment amount (e.g., $10,000)\n" +
-                    "2. Risk tolerance (Low/Medium/High)\n" +
-                    "3. Investment horizon (Short-term/Medium-term/Long-term)\n" +
-                    "4. Investment goals (Growth/Income/Balanced)\n" +
-                    "5. Preferred sectors (Technology/Healthcare/Finance/Energy/Consumer)"
+                    "1. Budget: (e.g., $10,000)\n" +
+                    "2. Preferred sectors (Technology/Healthcare/Finance/Energy/Consumer)\n" +
+                    "3. Market (US/India)\n\n"
             }]);
         } else {
             // Recommendation mode turned OFF
@@ -244,56 +243,61 @@ export function NexBoChat() {
     const handleSend = async () => {
         if (!value.trim() || isLoading) return;
 
+        // Store the message text before clearing input
+        const messageText = value.trim();
+        
+        // Clear input immediately for better UX
+        setValue("");
+        
+        // Add user message to chat
+        const userMessage: Message = {
+            role: 'user',
+            content: messageText,
+            timestamp: new Date()
+        };
+        setMessages(prev => [...prev, userMessage]);
+
         try {
             setIsLoading(true);
+            
+            console.log("💬 Sending message:", {
+                message: messageText,
+                recommend: isRecommendationMode
+            });
 
-            // Add user message immediately
-            const userMessage: Message = {
-                role: 'user',
-                content: value.trim()
-            };
-            setMessages(prev => [...prev, userMessage]);
-            setValue("");
-            adjustHeight(true);
-
-            // Send to backend API
             const response = await fetch('http://127.0.0.1:5500/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    message: userMessage.content,
+                    message: messageText,
                     recommend: isRecommendationMode
                 }),
             });
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
             const data = await response.json();
+            console.log("📡 Received response:", data);
 
             if (data.error) {
+                console.error("❌ Error:", data.error);
                 toast.error(data.error);
                 return;
             }
 
-            // Add assistant response
+            // Add assistant response with recommendations if present
             const aiMessage: Message = {
                 role: 'assistant',
-                content: data.response,
-                recommendations: data.recommendations
+                content: data.response || '',
+                recommendations: Array.isArray(data.recommendations) ? data.recommendations : []
             };
 
+            console.log("🤖 AI Message with recommendations:", aiMessage);
             setMessages(prev => [...prev, aiMessage]);
-            setIsWaitingForParameters(false);
 
         } catch (error) {
-            console.error('Chat error:', error);
-            toast.error('Failed to get response from server', {
-                description: 'Please check if the backend server is running',
-            });
+            console.error('❌ Chat error:', error);
+            toast.error('Failed to get response');
         } finally {
             setIsLoading(false);
         }
