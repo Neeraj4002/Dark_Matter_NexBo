@@ -27,7 +27,8 @@ When a user provides specific financial parameters (e.g., "I have $X to invest" 
 - Use the stock recommendation tool to fetch relevant recommendations.
 - **IMPORTANT:** For each new recommendation request, disregard any previous recommendation outputs from the conversation history. Use only the current parameters provided by the user to generate fresh recommendations.
 - if you use stock recommendation tool, then Format your output in JSON exactly as follows:
-
+IDEAL JSON Output:
+---
 {{
   "recommendations": [
     {{
