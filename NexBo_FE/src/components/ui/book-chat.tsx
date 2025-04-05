@@ -80,7 +80,7 @@ export function BookChat({ bookName }: BookChatProps) {
         bookName: bookName
       })
       // Send message to the backend including the book context.
-      const response = await fetch('http://127.0.0.1:8000/bookchat', {
+      const response = await fetch('https://dark-matter-nexbo.onrender.com/bookchat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
