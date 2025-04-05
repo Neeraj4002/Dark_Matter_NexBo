@@ -6,6 +6,7 @@ langchain_community==0.3.21
 langchain_core==0.3.51
 langchain_google_genai==2.1.2
 langgraph==0.3.25
+google-genai==1.9.0
 numpy==2.2.4
 protobuf
 pydantic==2.11.2
