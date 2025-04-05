@@ -2,7 +2,7 @@
 
 NexBo is an intelligent financial assistant powered by generative AI that helps both beginners and experienced investors make better financial decisions. The platform combines personalized investment guidance with structured learning resources to create a comprehensive financial education experience.
 
-![NexBo Banner](https://placeholder-for-banner-image.jpg)
+
 
 ## ✨ What is NexBo?
 
