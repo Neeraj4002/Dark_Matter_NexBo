@@ -138,6 +138,17 @@ The Firebase configuration is already set in `src/lib/firebase.ts`
 Required environment variables in `.env`:
 - `GOOGLE_API_KEY` - Google Gemini API key
 
+## Gallery
+
+| Screenshot 1                                                     | Screenshot 2                                                     |
+|------------------------------------------------------------------|------------------------------------------------------------------|
+| <img src="assets/Screenshot_2025-04-06_195728.webp" width="200"/> | <img src="assets/Screenshot_2025-04-06_195845.webp" width="200"/> |
+
+| Screenshot 3                                                     | Screenshot 4                                                     |
+|------------------------------------------------------------------|------------------------------------------------------------------|
+| <img src="assets/Screenshot_2025-04-06_200321.webp" width="200"/> | <img src="assets/Screenshot_2025-04-06_200414.webp" width="200"/> |
+
+
 ## 🔗 Links
 
 - [Live Demo](https://nexbo-front.vercel.app)
