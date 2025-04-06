@@ -140,4 +140,4 @@ Required environment variables in `.env`:
 
 ## 🔗 Links
 
-- [Live Demo](https://nexbo-finance.vercel.app)
+- [Live Demo](https://nexbo-front.vercel.app)
