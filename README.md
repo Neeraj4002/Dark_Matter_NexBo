@@ -6,7 +6,7 @@ NexBo is an intelligent financial assistant powered by generative AI that helps 
 
 ## ✨ What is NexBo?
 
-NexBo bridges the gap between financial education and practical investment advice. Using advanced AI, it provides:
+NexBo bridges the gap between financial education and practical investment advice.It helps make better investment decisions and know insights about investing. Using advanced AI, it provides:
 
 - **Personalized financial guidance** tailored to your goals and risk tolerance
 - **Stock recommendations** based on your budget and preferences
@@ -14,14 +14,14 @@ NexBo bridges the gap between financial education and practical investment advic
 
 ## 🚀 Key Features
 
-### NexBo Chat
-An AI-powered chatbot that answers financial questions, provides investment advice, and offers stock recommendations. Simply toggle "Recommendations Mode" to get personalized stock picks based on your budget and preferences.
+- ### NexBo Chat
+An AI-powered chat interface that answers financial questions, provides investment advice, and offers stock recommendations. Simply toggle "Recommendations Mode" to get personalized stock picks based on your budget and preferences. It gives comprehensive recommendation report when asked for it.
 
-### Learning Hub
+- ### Learning Hub
 A structured educational platform featuring:
-- **Beginner, intermediate, and advanced tracks**
-- **Key financial book summaries** with interactive lessons
-- **Book-specific chat** that lets you ask questions about the concepts as you learn
+- **Beginner, intermediate, and advanced levels**
+- **Key financial book summaries** with interactive lessons and quizzes
+- **Book.ai** - is a BookRAG that lets you ask questions about the concepts as you learn
 
 ## 🛠️ Technology Stack
 
@@ -49,7 +49,7 @@ NexBo was developed by:
 
 ### Prerequisites
 - Node.js 18+ and npm/yarn/pnpm
-- Python 3.12
+- Python 3.12.2
 - Google Gemini API key
 
 ### Backend Setup
@@ -62,7 +62,7 @@ NexBo was developed by:
 2. Create a virtual environment:
    ```bash
    python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   source venv/bin/activate  # On Windows: .venv\Scripts\activate
    ```
 
 3. Install dependencies:
@@ -72,7 +72,7 @@ NexBo was developed by:
 
 4. Create a `.env` file with your API keys:
    ```
-   GOOGLE_API_KEY=your_gemini_api_key
+   GOOGLE_API_KEY= your_gemini_api_key
    ```
 
 5. Run the backend server:
