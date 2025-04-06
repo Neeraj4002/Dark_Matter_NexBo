@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react" // Add this import
+import React from "react"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { motion } from "framer-motion"
@@ -13,13 +13,19 @@ import { cn } from "@/lib/utils"
 import { BookSidebar } from "@/components/ui/book-sidebar"
 import { BookChat } from "@/components/ui/book-chat"
 
-export default function BookPage({ params }: { params: { bookId: string } }) {
+interface BookPageProps {
+  params: {
+    bookId: string;
+  };
+}
+
+export default function BookPage(props: BookPageProps) {
   const router = useRouter()
   const [activeLesson, setActiveLesson] = useState<string | null>(null)
   const [completedLessons, setCompletedLessons] = useState<string[]>([])
 
   // Get book data
-  const bookId = params.bookId
+  const bookId = props.params?.bookId
   const book = bookData[bookId as keyof typeof bookData]
 
   const lessons = book?.lessons
@@ -33,7 +39,11 @@ export default function BookPage({ params }: { params: { bookId: string } }) {
 
     const saved = localStorage.getItem(`${bookId}Progress`)
     if (saved) {
-      setCompletedLessons(JSON.parse(saved))
+      try {
+        setCompletedLessons(JSON.parse(saved))
+      } catch (error) {
+        console.error("Failed to parse saved progress:", error)
+      }
     }
   }, [bookId, book, router])
 
@@ -247,7 +257,7 @@ Ramsey's approach is based on personal responsibility, discipline, and changing 
 
                   <div className="prose prose-invert max-w-none">
                     <p className="text-white/90 text-lg leading-relaxed">
-                      {bookIntroductions[bookId] || book.description}
+                      {(bookId && bookIntroductions[bookId]) || book.description}
                     </p>
 
                     <h3 className="text-2xl font-semibold text-white mt-8 mb-4">
@@ -255,7 +265,7 @@ Ramsey's approach is based on personal responsibility, discipline, and changing 
                     </h3>
 
                     <ul className="space-y-3 list-disc pl-5 text-white/90">
-                      {(bookTakeaways[bookId] || []).map((takeaway, index) => (
+                      {(bookId && bookTakeaways[bookId] || []).map((takeaway: string, index: number) => (
                         <li key={index}>{takeaway}</li>
                       ))}
                     </ul>
