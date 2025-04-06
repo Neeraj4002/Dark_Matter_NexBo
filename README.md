@@ -150,5 +150,5 @@ Required environment variables in `.env`:
 
 
 ## 🔗 Links
-
-- [Live Demo](https://nexbo-front.vercel.app)
+- [Youtube Demo](https://youtu.be/GHgMH8V96FI)
+- [MVP Live](https://nexbo-front.vercel.app)
