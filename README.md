@@ -140,14 +140,10 @@ Required environment variables in `.env`:
 
 ## Gallery
 
-| Screenshot 1                                                     | Screenshot 2                                                     |
-|------------------------------------------------------------------|------------------------------------------------------------------|
-| <img src="assets/Screenshot_2025-04-06_195728.webp" width="200"/> | <img src="assets/Screenshot_2025-04-06_195845.webp" width="200"/> |
-
-| Screenshot 3                                                     | Screenshot 4                                                     |
-|------------------------------------------------------------------|------------------------------------------------------------------|
-| <img src="assets/Screenshot_2025-04-06_200321.webp" width="200"/> | <img src="assets/Screenshot_2025-04-06_200414.webp" width="200"/> |
-
+![Screenshot 1](assets/Screenshot_2025-04-06_195728.webp)
+![Screenshot 2](assets/Screenshot_2025-04-06_195845.webp)
+![Screenshot 3](assets/Screenshot_2025-04-06_200321.webp)
+![Screenshot 4](assets/Screenshot_2025-04-06_200414.webp)
 
 ## 🔗 Links
 
