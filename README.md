@@ -144,6 +144,10 @@ Required environment variables in `.env`:
 ![Screenshot 2](assets/Screenshot_2025-04-06_195845.webp)
 ![Screenshot 3](assets/Screenshot_2025-04-06_200321.webp)
 ![Screenshot 4](assets/Screenshot_2025-04-06_200414.webp)
+![Screenshot 4](assets/LearningHub.png)
+![Screenshot 4](assets/Learning.png)
+
+
 
 ## 🔗 Links
 
