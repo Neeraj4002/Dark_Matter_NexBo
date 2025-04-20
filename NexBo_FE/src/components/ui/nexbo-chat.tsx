@@ -381,7 +381,10 @@ export function NexBoChat() {
                                                     </ReactMarkdown>
 
                                             ) :(
-                                            <p className="text-white/90 leading-relaxed whitespace-pre-line rounded-xl p-3" style={message.role === 'user' ? { backgroundColor: 'rgba(37, 99, 235, 0.2)' } : {}}>
+                                            <p className={cn(
+                                                "text-white/90 leading-relaxed whitespace-pre-line rounded-xl p-3",
+                                                message.role === 'user' ? "bg-blue-500/20" : ""
+                                            )}>
                                                 {message.content}
                                             </p>
                                             )}
@@ -413,8 +416,7 @@ export function NexBoChat() {
                                     </div>
                                 )}
                             </div>
-                        ))}
-                        <div ref={messagesEndRef} />
+                        ))}                        <div ref={messagesEndRef} />
                     </div>
                 </div>
 

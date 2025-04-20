@@ -6,6 +6,7 @@ import { ShimmerButton } from "@/components/ui/shimmer-button"
 import { Spotlight } from "@/components/ui/spotlight"
 import { AuthOverlay } from "@/components/auth/AuthOverlay"
 import { BackgroundBeams } from '@/components/ui/background-beams'
+import { TrendingCarousel } from '@/components/ui/trending-carousel'
 
 export default function Home() {
   const [showButton, setShowButton] = useState(false)
@@ -69,8 +70,14 @@ export default function Home() {
           <div className="absolute inset-0">
             <SplineScene 
               scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+              className="opacity-80"
             />
           </div>
+        </div>
+
+        {/* Trending Updates */}
+        <div className="w-full max-w-6xl mx-auto px-4 mb-12">
+          <TrendingCarousel />
         </div>
 
         {/* Features Section */}

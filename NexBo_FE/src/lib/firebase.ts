@@ -1,4 +1,4 @@
-import { initializeApp, getApps } from 'firebase/app'
+import { initializeApp, getApps, FirebaseError } from 'firebase/app'
 import { 
   getAuth, 
   GoogleAuthProvider,
@@ -11,7 +11,6 @@ import {
   signOut,
   type User
 } from 'firebase/auth'
-
 // Your Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyCbIFQ9aoS2BAnez30K7EncnE9DIBkqD00",
@@ -33,8 +32,11 @@ const signInWithGoogle = async () => {
   try {
     const result = await signInWithPopup(auth, googleProvider)
     return { user: result.user, error: null }
-  } catch (error: any) {
-    return { user: null, error: error.message }
+  } catch (error: unknown) {
+    if (error instanceof FirebaseError) {
+      return { user: null, error: error.message }
+    }
+    return { user: null, error: 'An unknown error occurred' }
   }
 }
 
@@ -42,8 +44,11 @@ const resetPassword = async (email: string) => {
   try {
     await sendPasswordResetEmail(auth, email)
     return { error: null }
-  } catch (error: any) {
-    return { error: error.message }
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { error: error.message }
+    }
+    return { error: 'An unknown error occurred' }
   }
 }
 
@@ -51,8 +56,11 @@ const verifyEmail = async (user: User) => {
   try {
     await sendEmailVerification(user)
     return { error: null }
-  } catch (error: any) {
-    return { error: error.message }
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { error: error.message }
+    }
+    return { error: 'An unknown error occurred' }
   }
 }
 

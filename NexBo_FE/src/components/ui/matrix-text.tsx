@@ -21,7 +21,6 @@ interface MatrixTextProps {
 export const MatrixText = ({
     text = "HelloWorld!",
     className,
-    initialDelay = 200,
     letterAnimationDuration = 500,
     letterInterval = 100,
 }: MatrixTextProps) => {
@@ -93,9 +92,8 @@ export const MatrixText = ({
     }, [animateLetter, text, isAnimating, letterInterval]);
 
     useEffect(() => {
-        const timer = setTimeout(startAnimation, initialDelay);
-        return () => clearTimeout(timer);
-    }, []);
+        startAnimation();
+    }, [startAnimation]);
 
     const motionVariants = useMemo(
         () => ({

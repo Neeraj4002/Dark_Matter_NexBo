@@ -146,8 +146,10 @@ input {
 .hide-scrollbar {
   -ms-overflow-style: none;  /* IE and Edge */
   -webkit-scrollbar-width: none; /* Safari and Chrome */
-  scrollbar-width: none;  /* Firefox */
-  -webkit-scrollbar-width: none; /* Safari and Chrome */  overflow: -moz-scrollbars-none; /* Legacy Firefox */
+  -webkit-scrollbar-width: none;  /* Firefox */
+  /* Comment out or remove scrollbar-width to avoid compatibility warnings */
+  /* scrollbar-width: thin; */
+  scrollbar-width: none; /* Safari and Chrome */  overflow: -moz-scrollbars-none; /* Legacy Firefox */
 }
 
 @keyframes scroll {

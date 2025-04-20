@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React from "react";
 import { cn } from "@/lib/utils";
 
 export interface ShimmerButtonProps
@@ -28,16 +28,12 @@ const ShimmerButton = React.forwardRef<HTMLButtonElement, ShimmerButtonProps>(
   ) => {
     return (
       <button
-        style={
-          {
-            "--spread": "90deg",
-            "--shimmer-color": shimmerColor,
-            "--radius": borderRadius,
-            "--speed": shimmerDuration,
-            "--cut": shimmerSize,
-            "--bg": background,
-          } as CSSProperties
-        }
+        data-spread="90deg"
+        data-shimmer-color={shimmerColor}
+        data-radius={borderRadius}
+        data-speed={shimmerDuration}
+        data-cut={shimmerSize}
+        data-bg={background}
         className={cn(
           "group relative z-0 flex cursor-pointer items-center justify-center overflow-hidden whitespace-nowrap border border-white/20 px-6 py-3",
           "text-base font-semibold tracking-wide text-white/90",
@@ -68,8 +64,7 @@ const ShimmerButton = React.forwardRef<HTMLButtonElement, ShimmerButtonProps>(
         <div className="absolute inset-0 rounded-[inherit] bg-gradient-to-r from-white/[0.08] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       </button>
     );
-  },
-);
+  },);
 
 ShimmerButton.displayName = "ShimmerButton";
 

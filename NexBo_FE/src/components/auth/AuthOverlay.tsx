@@ -58,10 +58,11 @@ export function AuthOverlay({ isOpen, onClose, initialView = 'signin' }: AuthOve
         }
       }
       window.location.href = '/home'
-    } catch (err: any) {
-      const errorMessage = err.code === 'auth/invalid-credential' 
+    } catch (err: unknown) {
+      const firebaseError = err as { code?: string }
+      const errorMessage = firebaseError.code === 'auth/invalid-credential' 
         ? 'Invalid email or password'
-        : err.code === 'auth/email-already-in-use'
+        : firebaseError.code === 'auth/email-already-in-use'
         ? 'Email already in use. Please sign in instead.'
         : 'Authentication failed. Please try again.'
       setError(errorMessage)
@@ -69,7 +70,6 @@ export function AuthOverlay({ isOpen, onClose, initialView = 'signin' }: AuthOve
       setIsLoading(false)
     }
   }
-
   const handleGoogleSignIn = async () => {
     setError('')
     setIsLoading(true)
@@ -77,13 +77,12 @@ export function AuthOverlay({ isOpen, onClose, initialView = 'signin' }: AuthOve
       const { user, error } = await signInWithGoogle()
       if (error) throw new Error(error)
       if (user) window.location.href = '/home'
-    } catch (err: any) {
+    } catch {
       setError('Google sign in failed. Please try again.')
     } finally {
       setIsLoading(false)
     }
   }
-
   const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!email) {
@@ -95,7 +94,7 @@ export function AuthOverlay({ isOpen, onClose, initialView = 'signin' }: AuthOve
       const { error } = await resetPassword(email)
       if (error) throw new Error(error)
       setResetSent(true)
-    } catch (err) {
+    } catch {
       setError('Failed to send reset email. Please try again.')
     } finally {
       setIsLoading(false)
@@ -136,6 +135,8 @@ export function AuthOverlay({ isOpen, onClose, initialView = 'signin' }: AuthOve
               <button
                 onClick={handleBack}
                 className="absolute top-4 left-4 p-2 text-white/60 hover:text-white transition-colors"
+                title="Go back"
+                aria-label="Go back"
               >
                 <ArrowLeft className="w-5 h-5" />
               </button>
